@@ -2,3 +2,6 @@
 
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/helenKarpova/python-project-lvl1/workflows/hexlet-check/badge.svg)](https://github.com/helenKarpova/python-project-lvl1/actions)
+
+
+example: https://asciinema.org/a/vSZKc9bJZSnVVkfK3PbSWObAY
