@@ -19,8 +19,8 @@ def gcd_recursion(num1, num2):
 
 
 def game(user_name, attempt):
-    first_number = random.randint(0, 100)
-    second_number = random.randint(0, 100)
+    first_number = random.randint(MIN_NUMBER, MAX_NUMBER)
+    second_number = random.randint(MIN_NUMBER, MAX_NUMBER)
     if attempt == FIRST_ATTEMPT:
         print('Find the greatest common divisor of given numbers.')
 
