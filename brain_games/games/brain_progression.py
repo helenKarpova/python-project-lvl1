@@ -2,15 +2,16 @@
 
 import random
 
-
+MIN_NUMBER = 5
+MAX_NUMBER = 10
 ANSWER_TEXT = 'What number is missing in the progression?'
 
 
 def get_question():
-    lenght_progression = random.randint(5, 10)
-    guess_position = random.randint(0, lenght_progression-1)
-    step = random.randint(5, 10)
-    next_value = random.randint(5, 10)
+    lenght_progression = random.randint(MIN_NUMBER, MAX_NUMBER)
+    guess_position = random.randint(0, lenght_progression - 1)
+    step = random.randint(MIN_NUMBER, MAX_NUMBER)
+    next_value = random.randint(MIN_NUMBER, MAX_NUMBER)
     regression_values = []
     position = 1
 
