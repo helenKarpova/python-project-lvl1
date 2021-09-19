@@ -1,15 +1,10 @@
+# !/usr/bin/.venv python
 
-
-from brain_games.scripts.game_engine import welcome_user, game_flow
 import random
-import prompt
 
-CNT_ATTEMPTS = 3
 MIN_NUMBER = 0
 MAX_NUMBER = 100
-SUCCESS_EXIT = 2
-FAILED_EXIT = 1
-FAILED_PARAM_EXIT = 0
+ANSWER_TEXT = 'Answer "yes" if given number is prime. Otherwise answer "no".'
 
 
 def is_prime(guess_number):
@@ -19,30 +14,16 @@ def is_prime(guess_number):
     return d == guess_number
 
 
-def game(user_name, attempt):
-    if attempt == 1:
-        print('Answer "yes" if given number is prime. Otherwise answer "no".')
-
+def get_question():
     guess_number = random.randint(MIN_NUMBER, MAX_NUMBER)
-    print(f'Question: {guess_number}')
-    user_answer = prompt.string('Your answer: ')
-
-    if user_answer.lower() not in ('yes', 'no'):
-        return FAILED_PARAM_EXIT
-
-    user_answer = True if user_answer.lower() == 'yes' else False
     right_answer = is_prime(guess_number)
-
-    if user_answer != right_answer:
-        return FAILED_EXIT
-
-    return SUCCESS_EXIT
+    return (guess_number, right_answer)
 
 
-def main():
-    user_name = welcome_user()
-    game_flow(CNT_ATTEMPTS, game, user_name)
+def is_valid_answer(answer):
+    return answer.lower() in ('yes', 'no')
 
 
-if __name__ == '__main__':
-    main()
+def check_answer(right_answer, answer):
+    user_answer = answer.lower() == 'yes'
+    return user_answer == right_answer

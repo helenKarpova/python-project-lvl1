@@ -1,16 +1,12 @@
+# !/usr/bin/.venv python
+
 import random
-import prompt
-from brain_games.scripts.game_engine import welcome_user, game_flow
 
 
-CNT_ATTEMPTS = 3
-SUCCESS_EXIT = 2
-FAILED_EXIT = 1
+ANSWER_TEXT = 'What number is missing in the progression?'
 
 
-def game(user_name, attempt):
-    print('What number is missing in the progression?')
-
+def get_question():
     lenght_progression = random.randint(5, 10)
     guess_position = random.randint(0, lenght_progression-1)
     step = random.randint(5, 10)
@@ -26,20 +22,13 @@ def game(user_name, attempt):
     right_answer = regression_values[guess_position]
     regression_values[guess_position] = str('..')
     progression = ' '.join(str(e) for e in regression_values)
-    print(f'Question: {progression}')
-    answer = prompt.integer('Your answer: ')
 
-    if answer != right_answer:
-        print(f'{answer} is wrong answer ;(. Correct answer was {right_answer}')
-        return FAILED_EXIT
-
-    return SUCCESS_EXIT
+    return (progression, right_answer)
 
 
-def main():
-    user_name = welcome_user()
-    game_flow(CNT_ATTEMPTS, game, user_name)
+def is_valid_answer(answer):
+    return answer.isdigit()
 
 
-if __name__ == '__main__':
-    main()
+def check_answer(right_answer, answer):
+    return int(answer) == right_answer

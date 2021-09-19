@@ -1,15 +1,15 @@
 # !/usr/bin/.venv python
 
-from brain_games.scripts.game_engine import welcome_user, game_flow
 import random
-import prompt
 
-CNT_ATTEMPTS = 3
+
 MIN_NUMBER = 0
 MAX_NUMBER = 100
-FIRST_ATTEMPT = 0
-SUCCESS_EXIT = 2
-FAILED_EXIT = 1
+ANSWER_TEXT = 'Find the greatest common divisor of given numbers.'
+
+
+def is_valid_answer(answer):
+    return answer.isdigit()
 
 
 def gcd_recursion(num1, num2):
@@ -18,28 +18,17 @@ def gcd_recursion(num1, num2):
     return gcd_recursion(num2 % num1, num1)
 
 
-def game(user_name, attempt):
+def get_question():
     first_number = random.randint(MIN_NUMBER, MAX_NUMBER)
     second_number = random.randint(MIN_NUMBER, MAX_NUMBER)
-    if attempt == FIRST_ATTEMPT:
-        print('Find the greatest common divisor of given numbers.')
-
-    print(f'Question: {first_number} {second_number}')
-    answer = prompt.integer('Your answer: ')
     right_answer = gcd_recursion(first_number, second_number)
+    return ((first_number, second_number), right_answer)
 
-    if answer != right_answer:
+
+def check_answer(right_answer, answer):
+
+    if int(answer) != right_answer:
         print(f'\'{answer}\' is wrong answer ;(. \
                 Correct answer was \'{right_answer}\'.')
-        return FAILED_EXIT
 
-    return SUCCESS_EXIT
-
-
-def main():
-    user_name = welcome_user()
-    game_flow(CNT_ATTEMPTS, game, user_name)
-
-
-if __name__ == '__main__':
-    main()
+    return int(answer) == right_answer

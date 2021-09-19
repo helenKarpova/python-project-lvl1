@@ -2,39 +2,38 @@
 
 import prompt
 
+
 CNT_ATTEMPTS = 3
 
 
-def get_answer(guess_number):
-    print(f'Question: {guess_number}')
-    answer = prompt.string('Your answer: ').lower()
+def game_flow(game):
 
-    return answer
-
-
-def game_flow(module):
-    
     print('Welcome to the Brain Games!')
     user_name = prompt.string('May I have your name? ')
     print(f'Hello, {user_name}!')
-    
-    print(module.WELCOME_TEXT)
+
+    print(game.ANSWER_TEXT)
 
     attempt = 0
-
     while attempt < CNT_ATTEMPTS:
 
-        attempt += 1
+        (question, right_answer) = game.get_question()
+        print(f'Question: {question}')
 
-        result = module.game()
-
-        if result == 2:
-            print('Correct!')
-
-        else:
+        answer = prompt.string('Your answer: ').lower()
+        if not game.is_valid_answer(answer):
             print(f'''Let's try again, {user_name}!''')
             return
+
+        result = game.check_answer(right_answer, answer)
+
+        if not result:
+            print(f'''Let's try again, {user_name}!''')
+            return
+
+        print('Correct!')
 
         if attempt == CNT_ATTEMPTS:
             print(f'''Congratulations, {user_name}!''')
 
+        attempt += 1
