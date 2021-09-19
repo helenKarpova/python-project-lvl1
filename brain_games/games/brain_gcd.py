@@ -22,7 +22,7 @@ def get_question():
     first_number = random.randint(MIN_NUMBER, MAX_NUMBER)
     second_number = random.randint(MIN_NUMBER, MAX_NUMBER)
     right_answer = gcd_recursion(first_number, second_number)
-    return ((first_number, second_number), right_answer)
+    return ((f'{first_number} {second_number}'), right_answer)
 
 
 def check_answer(right_answer, answer):
