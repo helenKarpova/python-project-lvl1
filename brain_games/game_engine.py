@@ -16,7 +16,7 @@ def game_flow(game):
 
     attempt = 0
     while attempt < CNT_ATTEMPTS:
-
+        attempt += 1
         (question, right_answer) = game.get_question()
         print(f'Question: {question}')
 
@@ -36,4 +36,4 @@ def game_flow(game):
         if attempt == CNT_ATTEMPTS:
             print(f'''Congratulations, {user_name}!''')
 
-        attempt += 1
+       
