@@ -33,11 +33,12 @@ def get_question():
 
 
 def is_valid_answer(answer):
-    return answer.isdigit()
+    return answer.lstrip("-").isdigit()
 
 
 def check_answer(right_answer, answer):
     answer = int(answer)
+
     if answer != right_answer:
         print(f'{answer} is wrong answer ;(. Correct answer was {right_answer}')
 

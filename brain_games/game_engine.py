@@ -35,5 +35,3 @@ def game_flow(game):
 
         if attempt == CNT_ATTEMPTS:
             print(f'''Congratulations, {user_name}!''')
-
-       
